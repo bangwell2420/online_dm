@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nomorTelepon = $_POST['nomor_telepon'];
     $password = $_POST['password'];
     $konfirmasiPassword = $_POST['konfirmasi_password'];
-
+    $role = $_POST['role'];
     // Validasi jika kata sandi dan konfirmasi kata sandi cocok
     if ($password !== $konfirmasiPassword) {
         echo "<script>alert('Konfirmasi kata sandi tidak cocok.');</script>";
@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo "<script>alert('Username telah digunakan. Silakan gunakan username lain.');</script>";
         } else {
             // Registrasi pengguna
-            $result = registerUser($conn, $email, $username, $namaLengkap, $nomorTelepon, $password);
+            $result = registerUser($conn, $email, $username, $namaLengkap, $nomorTelepon, $password, $role);
 
             if ($result) {
                 // Registrasi berhasil, arahkan ke halaman login
@@ -53,6 +53,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <input type="tel" name="nomor_telepon" placeholder="Nomor Telepon" required><br>
         <input type="password" name="password" placeholder="Kata Sandi" required><br>
         <input type="password" name="konfirmasi_password" placeholder="Konfirmasi Kata Sandi" required><br>
+        <select name="role" id="role">
+            <option value="admin">Admin</option>
+            <option value="user">User</option>
+        </select>
         <input type="submit" value="Daftar">
     </form>
 </body>
