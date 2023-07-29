@@ -6,7 +6,7 @@
 </head>
 <body>
     <h2>Login</h2>
-    <form method="post" action="login_proses.php">
+    <form method="post" action="proses.php">
         <input type="text" name="username" placeholder="Username" required><br>
         <input type="password" name="password" placeholder="Password" required><br>
         <input type="submit" value="Login">
