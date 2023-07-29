@@ -78,7 +78,7 @@ function loginUser($conn, $username, $password) {
 function redirectAfterLogin($role) {
     switch ($role) {
         case 'admin':
-            header('Location: admin_dashboard.php');
+            header('Location: admin/admin.php');
             break;
         case 'user':
             header('Location: user_dashboard.php');
@@ -89,5 +89,15 @@ function redirectAfterLogin($role) {
     }
 
     exit();
+}
+
+function tambahDataTopUp($conn, $namaGame, $totalDM, $harga) {
+    $namaGame = mysqli_real_escape_string($conn, $namaGame);
+    $totalDM = (int) $totalDM;
+    $harga = (int) $harga;
+
+    $sql = "INSERT INTO mn_topup (nama_game, total_dm, harga) VALUES ('$namaGame', $totalDM, $harga)";
+
+    return mysqli_query($conn, $sql);
 }
 ?>
