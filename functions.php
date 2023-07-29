@@ -83,7 +83,7 @@ function redirectAfterLogin() {
             header('Location: admin/dashboard.php');
             break;
         case 'user':
-            header('Location: user_dashboard.php');
+            header('Location: user/user.php');
             break;
         default:
             header('Location: login.php');
