@@ -39,7 +39,7 @@ function generateUniqueUsername($conn, $username) {
     return $username;
 }
 
-function registerUser($conn, $email, $username, $namaLengkap, $nomorTelepon, $password) {
+function registerUser($conn, $email, $username, $namaLengkap, $nomorTelepon, $password, $role) {
     // Konversi kata sandi menjadi hash.
     $hashedPassword = hashPassword($password);
 
@@ -48,7 +48,8 @@ function registerUser($conn, $email, $username, $namaLengkap, $nomorTelepon, $pa
     $username = mysqli_real_escape_string($conn, $username);
     $namaLengkap = mysqli_real_escape_string($conn, $namaLengkap);
     $nomorTelepon = mysqli_real_escape_string($conn, $nomorTelepon);
-    $sql = "INSERT INTO tabel_pengguna (email, username, nama_lengkap, nomor_telepon, password) VALUES ('$email', '$username', '$namaLengkap', '$nomorTelepon', '$hashedPassword')";
+    $role = mysqli_real_escape_string($conn, $role);
+    $sql = "INSERT INTO tabel_pengguna (email, username, nama_lengkap, nomor_telepon, password, role) VALUES ('$email', '$username', '$namaLengkap', '$nomorTelepon', '$hashedPassword', '$role')";
 
     if (mysqli_query($conn, $sql)) {
         return true; // Registrasi berhasil.
