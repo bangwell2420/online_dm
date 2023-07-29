@@ -14,7 +14,8 @@
         </select><br>
         <input type="number" name="total_dm" placeholder="Total DM" required><br>
         <input type="number" name="harga" placeholder="Harga" required><br>
-        <input type="submit" value="Tambah Data">
+        <input type="submit" value="Tambah Data"><br>
+        <a href="dashboard.php">Kembali</a>
     </form>
 </body>
 </html>

@@ -16,9 +16,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Login berhasil
         $_SESSION['username'] = $userData['username'];
         $_SESSION['role'] = $userData['role'];
-
+    
         // Arahkan ke halaman role masing-masing
-        redirectAfterLogin($_SESSION['role']);
+        redirectAfterLogin();
     } else {
         echo "<script>alert('Username atau Password salah.');</script>";
         // Arahkan kembali ke halaman login jika login gagal
@@ -42,4 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Arahkan kembali ke halaman tambah_data_topup.php setelah proses penambahan data
     header('Location: admin/admin.php');
 }
+
+
+
 ?>

@@ -75,10 +75,12 @@ function loginUser($conn, $username, $password) {
     return null; // Login gagal
 }
 
-function redirectAfterLogin($role) {
-    switch ($role) {
+function redirectAfterLogin() {
+    setcookie('user_logged_in', '1', time() + (86400 * 30), "/"); // Cookie berlaku selama 30 hari
+    // Tidak perlu menggunakan $userData di sini, karena $_SESSION sudah berisi data pengguna.
+    switch ($_SESSION['role']) {
         case 'admin':
-            header('Location: admin/admin.php');
+            header('Location: admin/dashboard.php');
             break;
         case 'user':
             header('Location: user_dashboard.php');
