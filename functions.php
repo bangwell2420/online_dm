@@ -57,4 +57,37 @@ function registerUser($conn, $email, $username, $namaLengkap, $nomorTelepon, $pa
         return false; // Registrasi gagal.
     }
 }
+
+function loginUser($conn, $username, $password) {
+    $username = mysqli_real_escape_string($conn, $username);
+    $sql = "SELECT * FROM tabel_pengguna WHERE username = '$username'";
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) === 1) {
+        $row = mysqli_fetch_assoc($result);
+        $hashedPassword = $row['password'];
+
+        if (password_verify($password, $hashedPassword)) {
+            return $row; // Login berhasil, kembalikan data pengguna
+        }
+    }
+
+    return null; // Login gagal
+}
+
+function redirectAfterLogin($role) {
+    switch ($role) {
+        case 'admin':
+            header('Location: admin_dashboard.php');
+            break;
+        case 'user':
+            header('Location: user_dashboard.php');
+            break;
+        default:
+            header('Location: login.php');
+            break;
+    }
+
+    exit();
+}
 ?>
