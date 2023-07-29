@@ -44,5 +44,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 
+session_start();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $gameName = $_POST['game_name'];
+
+    // Lakukan proses pemesanan sesuai kebutuhan, misalnya menyimpan data ke database
+    // ...
+
+    echo "<script>alert('Pemesanan untuk $gameName berhasil!');</script>";
+    header('Location: user_dashboard.php');
+    exit();
+} else {
+    // Redirect jika tidak ada data pemesanan yang diterima
+    header('Location: user_dashboard.php');
+    exit();
+}
 
 ?>
